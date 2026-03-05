@@ -9,7 +9,7 @@ Inspired by [Espanso](https://espanso.org) and [massCode](https://masscode.io).
 **Clone directly:**
 
 ```bash
-git clone https://github.com/xicao/saynippet.git ~/.claude/plugins/saynippet
+git clone https://github.com/xicv/saynippet.git ~/.claude/plugins/saynippet
 ```
 
 **Or symlink from a local checkout:**
