@@ -19,12 +19,14 @@ Delete a snippet from `~/.claude/snippets/`.
 
 **Step 3:** Show the snippet content and ask for confirmation: "Delete snippet `<trigger>`? This cannot be undone. (yes/no)"
 
-**Step 4:** If confirmed, check if other snippets reference this one (via compose or {{snippet:trigger}}):
-!`grep -rl "TRIGGER_NAME" ~/.claude/snippets/*.md 2>/dev/null`
+**Step 4:** If confirmed, check if other snippets reference this one (via compose or `{{snippet:trigger}}`):
+
+Run: `grep -rl "<trigger>" ~/.claude/snippets/*.md` to find any files that reference it in their `compose` field or as `{{snippet:<trigger>}}`.
 
 If referenced, warn: "This snippet is referenced by other snippets. Deleting it will break those compositions. Continue? (yes/no)"
 
-**Step 5:** Delete the file:
-!`rm ~/.claude/snippets/<trigger>.md`
+**Step 5:** If the user confirms, delete the file using Bash:
+
+Run: `rm ~/.claude/snippets/<trigger>.md`
 
 **Step 6:** Confirm: "Deleted snippet `<trigger>`"

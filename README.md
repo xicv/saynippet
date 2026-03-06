@@ -242,6 +242,13 @@ The plugin ships with 9 example snippets:
 
 Install with: `bash scripts/install-examples.sh`
 
+## Security Notes
+
+- **`{{shell:command}}`** executes arbitrary shell commands. Only use commands you trust in your snippets.
+- **`{{file:path}}`** reads file contents. Avoid referencing files with sensitive data (credentials, keys).
+- **`{{clipboard}}`** inserts clipboard contents, which may contain sensitive information.
+- Snippet files are plain text — do not embed secrets (API keys, tokens) directly in templates.
+
 ## Portability
 
 Snippets are plain Markdown files. Sync across machines with:
@@ -249,6 +256,13 @@ Snippets are plain Markdown files. Sync across machines with:
 - **Git:** `cd ~/.claude/snippets && git init`
 - **Cloud sync:** `ln -s ~/Dropbox/snippets ~/.claude/snippets`
 - **Copy:** Just copy the `~/.claude/snippets/` folder
+
+If version-controlling your snippets, consider excluding personal config:
+
+```gitignore
+# ~/.claude/snippets/.gitignore
+config.json
+```
 
 ## File Structure
 
