@@ -1,7 +1,9 @@
 ---
+name: delete
 description: Delete a snippet file
-argument-hint: [trigger]
-allowed-tools: [Bash, Read, Glob]
+argument-hint: "[trigger]"
+allowed-tools: Bash, Read, Glob
+disable-model-invocation: true
 ---
 
 ## Arguments
@@ -12,7 +14,7 @@ User arguments: $ARGUMENTS
 
 Delete a snippet from `~/.claude/snippets/`.
 
-**Step 1:** If no trigger argument, run `/snippet-list` and ask which to delete.
+**Step 1:** If no trigger argument, run `/snip:list` and ask which to delete.
 
 **Step 2:** Find the snippet file by matching trigger:
 !`for f in ~/.claude/snippets/*.md; do [ -f "$f" ] && echo "---FILE:$f---" && head -10 "$f" && echo "---END---"; done 2>/dev/null`

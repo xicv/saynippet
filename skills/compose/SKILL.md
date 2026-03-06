@@ -1,6 +1,7 @@
 ---
-description: Interactively compose a new snippet from existing ones
-allowed-tools: [Bash, Read, Write, Glob]
+name: compose
+description: Interactively compose a new snippet from existing ones. Use when the user wants to combine, chain, or compose snippets together.
+allowed-tools: Bash, Read, Write, Glob
 ---
 
 ## Arguments
@@ -47,4 +48,4 @@ compose: [<selected-trigger-1>, <selected-trigger-2>]
 
 Write to `~/.claude/snippets/<new-trigger>.md`
 
-**Step 6:** Confirm: "Created composed snippet `<trigger>` from [list]. Preview with `/snippet-preview <trigger>`"
+**Step 6:** Confirm: "Created composed snippet `<trigger>` from [list]. Preview with `/snip:preview <trigger>`"

@@ -1,7 +1,9 @@
 ---
+name: history
 description: Save repeated prompts from conversation history as snippets
-argument-hint: [count] [--search=keyword]
-allowed-tools: [Bash, Read, Write, Glob, Grep]
+argument-hint: "[count] [--search=keyword]"
+allowed-tools: Bash, Read, Write, Glob, Grep
+disable-model-invocation: true
 ---
 
 ## Arguments

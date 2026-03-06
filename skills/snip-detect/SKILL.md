@@ -1,5 +1,5 @@
 ---
-name: saynippet
+name: snip-detect
 description: >-
   Snippet management and inline expansion for Claude Code. Use when the user mentions
   snippets, templates, text expansion, saving prompts, composing prompts, or when
@@ -7,25 +7,26 @@ description: >-
   #search, #think, #review). Also triggers when user says "save this as a snippet",
   "I keep typing this", "save from history", "combine snippets", "list my snippets",
   or "expand snippet".
+user-invocable: false
 ---
 
 # SayNippet - Snippet Management Skill
 
 You manage reusable text snippets stored as Markdown files in `~/.claude/snippets/`.
 
-## Available Commands
+## Available Skills
 
-| Command | Alias | Purpose |
-|---------|-------|---------|
-| `/snippet <trigger>` | `/snip` | Expand a snippet |
-| `/snippet-add <trigger>` | `/snip-add` | Create a new snippet |
-| `/snippet-list [filter]` | `/snip-list` | List all snippets |
-| `/snippet-edit <trigger>` | - | Edit a snippet |
-| `/snippet-delete <trigger>` | - | Delete a snippet |
-| `/snippet-save` | - | Save from conversation |
-| `/snippet-compose` | `/snip-compose` | Interactive composition builder |
-| `/snippet-preview <trigger>` | `/snip-preview` | Preview expansion |
-| `/snippet-history` | `/snip-history` | Save from conversation history |
+| Skill | Purpose |
+|-------|---------|
+| `/snip:expand <trigger>` | Expand a snippet |
+| `/snip:add <trigger>` | Create a new snippet |
+| `/snip:list [filter]` | List all snippets |
+| `/snip:edit <trigger>` | Edit a snippet |
+| `/snip:delete <trigger>` | Delete a snippet |
+| `/snip:save` | Save from conversation |
+| `/snip:compose` | Compose snippets together |
+| `/snip:preview <trigger>` | Preview expansion |
+| `/snip:history` | Save from conversation history |
 
 ## Inline Trigger Detection
 
@@ -58,14 +59,14 @@ When the user says something matching these patterns, route to the appropriate c
 
 | User says... | Action |
 |-------------|--------|
-| "save this as a snippet" / "add to snippets" | `/snippet-save` |
-| "list snippets" / "show my snippets" | `/snippet-list` |
-| "edit snippet X" / "update snippet X" | `/snippet-edit X` |
-| "delete snippet X" / "remove snippet X" | `/snippet-delete X` |
-| "combine snippets" / "compose" / "chain" | `/snippet-compose` |
-| "I keep typing this" / "save from history" | `/snippet-history` |
-| "use my X snippet" / "expand X" | `/snippet X` |
-| "preview snippet X" | `/snippet-preview X` |
+| "save this as a snippet" / "add to snippets" | `/snip:save` |
+| "list snippets" / "show my snippets" | `/snip:list` |
+| "edit snippet X" / "update snippet X" | `/snip:edit X` |
+| "delete snippet X" / "remove snippet X" | `/snip:delete X` |
+| "combine snippets" / "compose" / "chain" | `/snip:compose` |
+| "I keep typing this" / "save from history" | `/snip:history` |
+| "use my X snippet" / "expand X" | `/snip:expand X` |
+| "preview snippet X" | `/snip:preview X` |
 
 ## Snippet Format Reference
 
@@ -88,5 +89,5 @@ Template body with {{placeholders}}
 ### Composition Methods
 1. `compose: [a, b]` in frontmatter (auto-prepend)
 2. `{{snippet:trigger}}` in body (inline nesting)
-3. `/snippet a+b+c` (ad-hoc chaining with +)
-4. `/snippet --tag=X` (all snippets with tag X)
+3. `/snip:expand a+b+c` (ad-hoc chaining with +)
+4. `/snip:expand --tag=X` (all snippets with tag X)

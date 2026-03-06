@@ -6,16 +6,22 @@ Inspired by [Espanso](https://espanso.org) and [massCode](https://masscode.io).
 
 ## Installation
 
+**From a marketplace** (if available):
+
+```bash
+claude plugin install saynippet
+```
+
 **Clone directly:**
 
 ```bash
 git clone https://github.com/xicv/saynippet.git ~/.claude/plugins/saynippet
 ```
 
-**Or symlink from a local checkout:**
+**Or test from a local checkout:**
 
 ```bash
-ln -s /path/to/saynippet ~/.claude/plugins/saynippet
+claude --plugin-dir /path/to/saynippet
 ```
 
 **Install starter snippets:**
@@ -31,12 +37,12 @@ Start a **new Claude Code session** after installation so the plugin loads.
 ## Quick Start
 
 ```
-/snippet-list                    # See all your snippets
-/snippet search                  # Expand a snippet by trigger
-/snippet search+think            # Compose two snippets on the fly
-#search what is Rust ownership   # Inline trigger in regular message
-/snippet-add my-template         # Create a new snippet
-/snippet-history                 # Find repeated prompts to save
+/snip:list                         # See all your snippets
+/snip:expand search                # Expand a snippet by trigger
+/snip:expand search+think          # Compose two snippets on the fly
+#search what is Rust ownership     # Inline trigger in regular message
+/snip:add my-template              # Create a new snippet
+/snip:history                      # Find repeated prompts to save
 ```
 
 ## How It Works
@@ -59,24 +65,26 @@ Best regards,
 {{user_name}}
 ```
 
-When you run `/snippet greet`, Claude:
+When you run `/snip:expand greet`, Claude:
 1. Reads the file and resolves built-in placeholders (`{{date}}`, `{{user_name}}`)
 2. Asks you for custom placeholders (`{{name}}`, `{{topic}}`)
 3. Outputs the expanded text as your working instruction
 
-## Commands
+## Skills
 
-| Command | Alias | Description |
-|---------|-------|-------------|
-| `/snippet <trigger>` | `/snip` | Expand a snippet by keyword |
-| `/snippet-list [filter]` | `/snip-list` | List all snippets with filtering |
-| `/snippet-add [trigger]` | `/snip-add` | Create a new snippet interactively |
-| `/snippet-edit <trigger>` | — | Edit an existing snippet |
-| `/snippet-delete <trigger>` | — | Delete a snippet (with reference checking) |
-| `/snippet-save` | — | Save text from current conversation as a snippet |
-| `/snippet-compose` | `/snip-compose` | Build a composed snippet from existing ones |
-| `/snippet-preview <trigger>` | `/snip-preview` | Preview expansion without executing |
-| `/snippet-history` | `/snip-history` | Find and save repeated prompts from history |
+| Skill | Description |
+|-------|-------------|
+| `/snip:expand <trigger>` | Expand a snippet by keyword |
+| `/snip:list [filter]` | List all snippets with filtering |
+| `/snip:add [trigger]` | Create a new snippet interactively |
+| `/snip:edit <trigger>` | Edit an existing snippet |
+| `/snip:delete <trigger>` | Delete a snippet (with reference checking) |
+| `/snip:save` | Save text from current conversation as a snippet |
+| `/snip:compose` | Build a composed snippet from existing ones |
+| `/snip:preview <trigger>` | Preview expansion without executing |
+| `/snip:history` | Find and save repeated prompts from history |
+
+Claude also auto-detects snippet-related requests from natural language (e.g., "save this as a snippet", "list my snippets", "combine snippets") and inline triggers like `#search`.
 
 ## Placeholders
 
@@ -140,7 +148,7 @@ Now analyze what you found:
 Combine on the fly without creating a new file:
 
 ```
-/snippet search+think+summarize
+/snip:expand search+think+summarize
 ```
 
 ### 4. Tag-based composition
@@ -148,7 +156,7 @@ Combine on the fly without creating a new file:
 Expand all snippets sharing a tag:
 
 ```
-/snippet --tag=pre-commit
+/snip:expand --tag=pre-commit
 ```
 
 Circular references are detected and produce a clear error.
@@ -175,10 +183,10 @@ Please update the \#search snippet
 
 ## History-Based Save
 
-`/snippet-history` scans your Claude Code conversation logs, finds prompts you've sent repeatedly, and offers to save them as snippets:
+`/snip:history` scans your Claude Code conversation logs, finds prompts you've sent repeatedly, and offers to save them as snippets:
 
 ```
-> /snippet-history
+> /snip:history
 Recent repeated prompts (last 30 days):
 
   1. [x5] "Search the web for the latest docs on..."
@@ -267,10 +275,20 @@ config.json
 ## File Structure
 
 ```
-~/.claude/plugins/saynippet/      # The plugin
-  plugin.json
-  commands/                        # 9 commands + 6 aliases
-  skills/saynippet/SKILL.md        # Auto-detection + inline triggers
+saynippet/                         # The plugin
+  .claude-plugin/
+    plugin.json                    # Plugin manifest (name: "snip")
+  skills/                         # 9 skills + auto-detection
+    expand/SKILL.md                # /snip:expand
+    list/SKILL.md                  # /snip:list
+    add/SKILL.md                   # /snip:add
+    edit/SKILL.md                  # /snip:edit
+    delete/SKILL.md                # /snip:delete
+    save/SKILL.md                  # /snip:save
+    compose/SKILL.md               # /snip:compose
+    preview/SKILL.md               # /snip:preview
+    history/SKILL.md               # /snip:history
+    snip-detect/SKILL.md           # Auto-detection + inline triggers
   examples/                        # Starter snippets
   scripts/install-examples.sh      # Installer
 

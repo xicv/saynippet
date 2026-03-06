@@ -1,7 +1,8 @@
 ---
-description: Create a new snippet interactively
-argument-hint: [trigger]
-allowed-tools: [Bash, Read, Write, Glob]
+name: add
+description: Create a new snippet interactively. Use when the user wants to create, add, or make a new snippet template.
+argument-hint: "[trigger]"
+allowed-tools: Bash, Read, Write, Glob
 ---
 
 ## Arguments

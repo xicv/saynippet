@@ -1,7 +1,8 @@
 ---
-description: Expand a snippet by trigger keyword
-argument-hint: [trigger|trigger1+trigger2] [--tag=tag]
-allowed-tools: [Bash, Read, Glob]
+name: expand
+description: Expand a snippet by trigger keyword. Use when the user wants to expand, use, or run a snippet template.
+argument-hint: "[trigger|trigger1+trigger2] [--tag=tag]"
+allowed-tools: Bash, Read, Glob
 ---
 
 ## Arguments
@@ -17,7 +18,7 @@ Expand a snippet from `~/.claude/snippets/`.
 
 **Step 2:** Parse the arguments:
 
-- If no arguments: run `/snippet-list` instead (show all snippets for the user to choose)
+- If no arguments: run `/snip:list` instead (show all snippets for the user to choose)
 - If argument contains `+`: split on `+` to get multiple triggers (chained composition)
 - If argument starts with `--tag=`: extract tag name, find all snippets with that tag
 - Otherwise: single trigger lookup
@@ -26,7 +27,7 @@ Expand a snippet from `~/.claude/snippets/`.
 
 !`for f in ~/.claude/snippets/*.md; do [ -f "$f" ] && echo "---FILE:$f---" && cat "$f" && echo "---END---"; done 2>/dev/null`
 
-Match the `trigger:` field in frontmatter to find the right file(s). If not found, suggest similar triggers or tell user to run `/snippet-list`.
+Match the `trigger:` field in frontmatter to find the right file(s). If not found, suggest similar triggers or tell user to run `/snip:list`.
 
 **Step 4:** Resolve composition chain:
 

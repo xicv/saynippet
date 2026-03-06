@@ -1,7 +1,8 @@
 ---
+name: preview
 description: Preview snippet expansion without executing
-argument-hint: [trigger|trigger1+trigger2]
-allowed-tools: [Bash, Read, Glob]
+argument-hint: "[trigger|trigger1+trigger2]"
+allowed-tools: Bash, Read, Glob
 ---
 
 ## Arguments
@@ -12,7 +13,7 @@ User arguments: $ARGUMENTS
 
 Preview how a snippet expands without treating it as an instruction.
 
-**Step 1:** Follow the same resolution process as `/snippet` (Steps 1-5: parse args, find files, resolve composition, resolve built-in placeholders).
+**Step 1:** Follow the same resolution process as `/snip:expand` (Steps 1-5: parse args, find files, resolve composition, resolve built-in placeholders).
 
 Read config:
 !`cat ~/.claude/snippets/config.json 2>/dev/null || echo '{"snippets_dir":"~/.claude/snippets","separator":"\n\n---\n\n"}'`

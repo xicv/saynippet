@@ -1,7 +1,9 @@
 ---
+name: edit
 description: Edit an existing snippet
-argument-hint: [trigger]
-allowed-tools: [Bash, Read, Edit, Glob]
+argument-hint: "[trigger]"
+allowed-tools: Bash, Read, Edit, Glob
+disable-model-invocation: true
 ---
 
 ## Arguments
@@ -12,7 +14,7 @@ User arguments: $ARGUMENTS
 
 Edit an existing snippet in `~/.claude/snippets/`.
 
-**Step 1:** If no trigger argument provided, run `/snippet-list` and ask user which snippet to edit.
+**Step 1:** If no trigger argument provided, run `/snip:list` and ask user which snippet to edit.
 
 **Step 2:** Find the snippet file:
 !`for f in ~/.claude/snippets/*.md; do [ -f "$f" ] && echo "---FILE:$f---" && head -10 "$f" && echo "---END---"; done 2>/dev/null`

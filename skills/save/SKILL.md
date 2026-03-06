@@ -1,6 +1,7 @@
 ---
-description: Quick-save text from conversation as a snippet
-allowed-tools: [Bash, Read, Write, Glob]
+name: save
+description: Quick-save text from current conversation as a snippet. Use when the user says "save this as a snippet" or "add to snippets".
+allowed-tools: Bash, Read, Write, Glob
 ---
 
 ## Instructions

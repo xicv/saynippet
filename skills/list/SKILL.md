@@ -1,7 +1,8 @@
 ---
-description: List all available snippets with filtering
-argument-hint: [keyword] [--cat=category]
-allowed-tools: [Bash, Read, Glob]
+name: list
+description: List all available snippets with filtering. Use when the user asks to see, list, or browse their snippets.
+argument-hint: "[keyword] [--cat=category]"
+allowed-tools: Bash, Read, Glob
 ---
 
 ## Arguments
@@ -35,4 +36,4 @@ Snippets (N total):
 **Filtering:**
 - If user provided a keyword argument, filter snippets where trigger, description, or tags contain the keyword (case-insensitive)
 - If user provided `--cat=X`, filter to only that category
-- If no snippets found, tell user: "No snippets found. Create one with `/snippet-add`"
+- If no snippets found, tell user: "No snippets found. Create one with `/snip:add`"

@@ -1,6 +1,6 @@
 {
-  "name": "saynippet",
-  "version": "0.1.0",
+  "name": "snip",
+  "version": "1.0.0",
   "description": "Snippet management for Claude Code. Create, compose, and expand reusable prompt templates stored as Markdown files.",
   "author": {
     "name": "Xi Cao"
