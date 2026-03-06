@@ -6,16 +6,11 @@ Inspired by [Espanso](https://espanso.org) and [massCode](https://masscode.io).
 
 ## Installation
 
-**From a marketplace** (if available):
+**From the marketplace:**
 
-```bash
-claude plugin install saynippet
 ```
-
-**Clone directly:**
-
-```bash
-git clone https://github.com/xicv/saynippet.git ~/.claude/plugins/saynippet
+/plugin marketplace add xicv/saynippet
+/plugin install snip@saynippet
 ```
 
 **Or test from a local checkout:**
@@ -26,8 +21,14 @@ claude --plugin-dir /path/to/saynippet
 
 **Install starter snippets:**
 
+```
+/snip:add
+```
+
+Or manually:
+
 ```bash
-bash ~/.claude/plugins/saynippet/scripts/install-examples.sh
+bash ~/.claude/plugins/cache/saynippet/snip/scripts/install-examples.sh
 ```
 
 This copies 9 example snippets to `~/.claude/snippets/`. Existing files are never overwritten.
@@ -278,6 +279,7 @@ config.json
 saynippet/                         # The plugin
   .claude-plugin/
     plugin.json                    # Plugin manifest (name: "snip")
+    marketplace.json               # Marketplace catalog
   skills/                         # 9 skills + auto-detection
     expand/SKILL.md                # /snip:expand
     list/SKILL.md                  # /snip:list
